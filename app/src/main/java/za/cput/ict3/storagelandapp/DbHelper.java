@@ -25,6 +25,8 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String Col_4 ="Date";
     private static final String Col_5 ="Store No";
     private static final String Col_6 ="AMOUNT";
+    private static final String Col_7 = "Email";
+    private static final String Col_8 ="Address";
 
 
     public DbHelper(@Nullable Context context) {
@@ -33,7 +35,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + "(ACCOUNTCODE INTEGER PRIMARY KEY AUTOINCREMENT,NAME,CELL NUM I,DATE,STORE NUM INTEGER,AMOUNT DOUBLE)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + "(ACCOUNTCODE INTEGER PRIMARY KEY AUTOINCREMENT,NAME STRING,CELLNUM LONG,DATE,STORENUM INTEGER, AMOUNT DOUBLE,EMAIL STRING,ADDRESS STRING)");
 
     }
 
@@ -43,7 +45,7 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertInfo(Integer AccountCode, String Name, Long CellNo,String Date,String StoreNo,Double Amount) {
+    public boolean insertData(Integer AccountCode, String Name, String CellNo,String Date,String StoreNo,Double Amount,String Address,String Email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Col_2, Name);
@@ -51,6 +53,8 @@ public class DbHelper extends SQLiteOpenHelper {
         contentValues.put(Col_4, Date);
         contentValues.put(Col_5, StoreNo);
         contentValues.put(Col_6,Amount);
+        contentValues.put(Col_7,Address);
+        contentValues.put(Col_8,Email);
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1) {
             return false;
@@ -66,14 +70,13 @@ public class DbHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean updateData(Integer AccountCode, String Name, Long CellNo,String Date,String StoreNo,Double Amount )
+    public boolean updateData(String AccountCode, String Name, String CellNo,String StoreNo,Double Amount )
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Col_1,AccountCode);
         contentValues.put(Col_2, Name);
         contentValues.put(Col_3, CellNo);
-        contentValues.put(Col_4, Date);
         contentValues.put(Col_5, StoreNo);
         contentValues.put(Col_6,Amount);
         db.update(TABLE_NAME,contentValues,"ID=?",new String[] {ID});

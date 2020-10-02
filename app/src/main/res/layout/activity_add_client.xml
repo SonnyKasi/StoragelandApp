@@ -4,189 +4,174 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E1D6D6"
+    android:background="#899DA6"
     tools:context=".AddClient">
-
-    <Button
-        android:id="@+id/button_Delete"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:text="Delete"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="666dp" />
-
-    <Button
-        android:id="@+id/button_Update"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update"
-        tools:layout_editor_absoluteX="260dp"
-        tools:layout_editor_absoluteY="667dp" />
-
-    <EditText
-        android:id="@+id/editText_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="occupation date"
-        android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/editText_Address"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="enter email Address"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editText_Cell"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText_Address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="enter address"
-        android:inputType="textPostalAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editText_storeNr"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText_Cell"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="enter cell no"
-        android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/editText_date"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText_AccountCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="AccCode"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText_email"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText_Amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Total R"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText_ClientName"
-        android:layout_width="213dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText_AccountCode"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText_storeNr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="enter store number"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText_Amount"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="85dp"
-        android:text="Boxes"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox2"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="85dp"
-        android:text="Padlock"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/checkBox" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginRight="41dp"
-        android:layout_marginBottom="85dp"
-        android:text="Buble wrap"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/checkBox2" />
-
-    <Button
-        android:id="@+id/button_Save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="153dp"
-        android:layout_marginLeft="153dp"
-        android:layout_marginEnd="170dp"
-        android:layout_marginRight="170dp"
-        android:layout_marginBottom="17dp"
-        android:text="Save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView_NewClient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="159dp"
+        android:layout_marginLeft="159dp"
+        android:layout_marginTop="2dp"
         android:text="New Client"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_Delete"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="520dp"
+        android:background="@android:drawable/button_onoff_indicator_off"
+        android:text="Delete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView4" />
+
+    <Button
+        android:id="@+id/button_SaveClient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/button_onoff_indicator_off"
+        android:text="Save"
+        app:layout_constraintBottom_toTopOf="@+id/button_Update"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_Update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/button_onoff_indicator_off"
+        android:text="Update"
+        app:layout_constraintBottom_toTopOf="@+id/button_Delete"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="408dp"
+        android:layout_height="323dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_NewClient"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editText_AccountCode"
+                android:layout_width="213dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="24dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="AccCode"
+                android:inputType="textPersonName"
+                android:textColor="#2B2929" />
+
+            <EditText
+                android:id="@+id/editText_ClientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="24dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:textColor="#2B2929" />
+
+            <EditText
+                android:id="@+id/editText_Cell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="24dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="enter cell no"
+                android:inputType="phone"
+                android:textColor="#2B2929" />
+
+            <EditText
+                android:id="@+id/editText_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="24dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="occupation date"
+                android:inputType="date"
+                android:textColor="#2B2929" />
+
+            <EditText
+                android:id="@+id/editText_storeNr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="24dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="enter store number"
+                android:inputType="textPersonName"
+                android:textColor="#2B2929" />
+
+            <EditText
+                android:id="@+id/editText_Amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="23dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Total R"
+                android:textColor="#2B2929" />
+
+            <EditText
+                android:id="@+id/editText_Address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="24dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="enter address"
+                android:inputType="textPostalAddress"
+                android:textColor="#2B2929" />
+
+            <EditText
+                android:id="@+id/editText_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="24dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="enter email Address"
+                android:inputType="textEmailAddress"
+                android:textColor="#2B2929" />
+
+        </LinearLayout>
+
+        />
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

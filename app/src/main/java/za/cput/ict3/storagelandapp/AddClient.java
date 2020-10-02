@@ -1,5 +1,6 @@
 package za.cput.ict3.storagelandapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -19,49 +20,73 @@ public class AddClient extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_client);
-        editName=(EditText)findViewById(R.id.editText_ClientName);
-        editEmail=(EditText)findViewById(R.id.editText_email);
-        occuDate=(EditText)findViewById(R.id.editText_date);
-        storeNo=(EditText)findViewById(R.id.editText_storeNr);
-        editAddress=(EditText)findViewById(R.id.editText_Address);
-        accCode=(EditText)findViewById(R.id.editText_AccountCode);
-        cellNr =(EditText)findViewById(R.id.editText_Cell);
-        amount=(EditText)findViewById(R.id.editText_Amount);
-        button_add= (Button) findViewById(R.id.button_Add);
-        button_update=(Button) findViewById(R.id.button_Update);
-        button_delete=(Button) findViewById(R.id.button_Delete);
+        dbHelper= new DbHelper(this);
+        editName = (EditText) findViewById(R.id.editText_AccountCode);
+        editEmail = (EditText) findViewById(R.id.editText_email);
+        occuDate = (EditText) findViewById(R.id.editText_date);
+        storeNo = (EditText) findViewById(R.id.editText_storeNr);
+        editAddress = (EditText) findViewById(R.id.editText_Address);
+        accCode = (EditText) findViewById(R.id.editText_ClientName);
+        cellNr = (EditText) findViewById(R.id.editText_Cell);
+        amount = (EditText) findViewById(R.id.editText_Amount);
+
+        button_add = (Button) findViewById(R.id.button_SaveClient);
+        button_update = (Button) findViewById(R.id.button_Update);
+        button_delete = (Button) findViewById(R.id.button_Delete);
         AddData();
         UpdateData();
         DeleteData();
     }
-        public void UpdateData ()
-        {
+
+
+    public void AddData()
+    {
+        button_add.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean InfoSaved = dbHelper.insertData(editName.getText().toString(),cellNr.getText().toString(),
+                                occuDate.getText().toString(), storeNo.getText().toString(),
+                                amount.getText().toString(), editAddress.getText().toString(), editEmail.getText().toString());
+                        if (InfoSaved == true) {
+                            Toast.makeText(AddClient.this, "Client has been saved", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(AddClient.this, "Client not been saved", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
+    }
+
+    public void UpdateData ()
+    {
             button_update.setOnClickListener(
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            boolean IsUpdate = dbHelper.updateData(accCode.getText().toString(), editName.getText().toString(),cellNr.getText().toString(), .getText().toString());
+                            boolean IsUpdate = dbHelper.updateData(accCode.getText().toString(), editName.getText().toString(),cellNr.getText().toString(),
+                                    storeNo.getText().toString(),amount.getText().toString());
                             if (IsUpdate == true) {
-                                Toast.makeText(AddClient.this, "Data updated", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddClient.this, "Information updated", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(AddClient.this, "Data not updated", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddClient.this, "Information not updated", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
             );
         }
-    }
-        public void DeleteData ()
-        {
+
+    public void DeleteData ()
+    {
             button_delete.setOnClickListener(
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Integer deletedRows = dbHelper.deleteData(accCode.getText().toString());
                             if (deletedRows > 0) {
-                                Toast.makeText(AddClient.this, "Data deleted", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddClient.this, "Client deleted", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(AddClient.this, "Data not deleted", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddClient.this, "Client not deleted", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -69,27 +94,14 @@ public class AddClient extends AppCompatActivity {
 
         }
 
-        public void AddData()
-        {
-            button_add.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            boolean Isinserted= dbHelper.insertData(accCode.getText().toString(),editName.getText().toString(),
-                                    editAddress.getText().toString(),
-                                    editEmail.getText().toString(),cellNr.getText().toString(),storeNo.getText(),
-                                    occuDate.getText().toString(),amount.getText());
-                            if (Isinserted==true)
-                            {
-                                Toast.makeText(AddClient.this, "Data inserted", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Toast.makeText(AddClient.this, "Data not inserted", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-            );
-        }
+    public void showMessage(String title,String Message){
+        AlertDialog.Builder builder= new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
     }
 }
+
+
+

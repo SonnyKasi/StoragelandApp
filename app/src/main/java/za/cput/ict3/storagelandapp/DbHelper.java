@@ -28,6 +28,11 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String Col_7 = "Email";
     private static final String Col_8 ="Address";
 
+    private static final String TABLE_NAME1 = "STORES.DB";
+    //private static final String Col_1 ="Full";
+    //private static final String Col_2 ="Half";
+    //private static final String Col_3 ="Quarter";
+
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null,1);
@@ -36,8 +41,9 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "(ACCOUNTCODE INTEGER PRIMARY KEY AUTOINCREMENT,NAME STRING,CELLNUM LONG,DATE,STORENUM INTEGER, AMOUNT DOUBLE,EMAIL STRING,ADDRESS STRING)");
-
+      //  db.execSQL("create table" +TABLE_NAME1 +"(FULL STRING,HALF STRING,QUARTER STRING )");
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -45,7 +51,7 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(Integer AccountCode, String Name, String CellNo,String Date,String StoreNo,Double Amount,String Address,String Email) {
+    public boolean insertData(String Name, String CellNo,String Date,String StoreNo,String Amount,String Address,String Email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Col_2, Name);
@@ -63,14 +69,14 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getAllData()
+    public Cursor getAll()
     {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res=db.rawQuery("select * from "+ TABLE_NAME,null);
         return res;
     }
 
-    public boolean updateData(String AccountCode, String Name, String CellNo,String StoreNo,Double Amount )
+    public boolean updateData(String AccountCode, String Name, String CellNo,String StoreNo,String Amount )
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -88,6 +94,8 @@ public class DbHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_NAME,"ID=?",new String[] {ID});
 
     }
+
+
 }
 
 

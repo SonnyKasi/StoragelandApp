@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class Home extends AppCompatActivity {
 
     DbHelper dbHelper;
-    Button button_view,button_AvailStore,button_NewClient;
+    Button button_view,button_AvailStore,button_NewClient,button_viewClientContact;
     TextView textView;
 
     @Override
@@ -26,6 +26,8 @@ public class Home extends AppCompatActivity {
         viewAllStores();
         button_view= (Button) findViewById(R.id.button_ViewClients);
         viewAll();
+        button_viewClientContact = (Button)findViewById(R.id.button_ClientContact);
+        viewClientContact();
 
         textView = findViewById(R.id.textView_UserName);
         textView.setText(getIntent().getStringExtra("message"));
@@ -65,6 +67,29 @@ public class Home extends AppCompatActivity {
                             buffer.append("AMOUNT:"+res.getString(6)+"\n\n");
                         }
                         showMessage("Existing Clients",buffer.toString());
+                    }
+                }
+        );
+    }
+
+    public void viewClientContact()
+    {
+        button_viewClientContact.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cursor res = dbHelper.viewClientContact();
+                        if (res.getCount() == 0) {
+                            showMessage("ERROR", "No clients exist");
+                            return;
+                        }
+
+                        StringBuffer buffer = new StringBuffer();
+                        while (res.moveToNext()) {
+                            buffer.append("AccCode:" + res.getString(0) + "\n");
+                            buffer.append("NAME:" + res.getString(2) + "\n");
+                            buffer.append("Cell No:" + res.getString(3) + "\n");
+                        }
                     }
                 }
         );

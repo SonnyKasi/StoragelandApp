@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/mainlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddClient"></activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".AddClient" />
         <activity android:name=".Home" />
         <activity android:name=".MainActivity">
             <intent-filter>

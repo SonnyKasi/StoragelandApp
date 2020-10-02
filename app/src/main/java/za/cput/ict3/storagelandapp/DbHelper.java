@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import static android.os.Build.ID;
-
 /**
  * Author: Sonwabo Kasi
  * Class: Part Time
@@ -24,15 +22,15 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String Col_3 ="Cell No";
     private static final String Col_4 ="Date";
     private static final String Col_5 ="Store No";
-    private static final String Col_6 ="AMOUNT";
+    private static final String Col_6 ="Amount";
     private static final String Col_7 = "Email";
     private static final String Col_8 ="Address";
 
-    private static final String TABLE_NAME1 = "STORES.DB";
-    //private static final String Col_1 ="Full";
-    //private static final String Col_2 ="Half";
-    //private static final String Col_3 ="Quarter";
-
+    private static final String TABLE_NAME1 = "AdminTable";
+    private static final String ColumnID = "Id";
+    private static final String ColumnUsername = "Username";
+    private static final String ColumnFirstName = "FirstName";
+    private static final String ColumnPassword = "Password";
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null,1);
@@ -40,8 +38,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + "(ACCOUNTCODE INTEGER PRIMARY KEY AUTOINCREMENT,NAME STRING,CELLNUM LONG,DATE,STORENUM INTEGER, AMOUNT DOUBLE,EMAIL STRING,ADDRESS STRING)");
-      //  db.execSQL("create table" +TABLE_NAME1 +"(FULL STRING,HALF STRING,QUARTER STRING )");
+        db.execSQL("create table " + TABLE_NAME + "(ACCOUNTCODE INTEGER PRIMARY KEY AUTOINCREMENT,NAME STRING,CELLNUM LONG,DATE,STORENUM INTEGER, AMOUNT DOUBLE,EMAIL STRING,ADDRESS STRING)");
+        db.execSQL("create AdminTable" +TABLE_NAME1 +"(ID INTEGER PRIMARY KEY AUTOINCREMENT,USERNAME STRING,FIRSTNAME STRING,PASSWORD)");
     }
 
 
@@ -76,22 +74,51 @@ public class DbHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor viewClientContact()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res=db.rawQuery("select Name & CellNo from "+ TABLE_NAME,null);
+        return res;
+    }
+
     public boolean updateData(String AccountCode, String Name, String CellNo,String StoreNo,String Amount )
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Col_1,AccountCode);
-        contentValues.put(Col_2, Name);
-        contentValues.put(Col_3, CellNo);
-        contentValues.put(Col_5, StoreNo);
+        contentValues.put(Col_2,Name);
+        contentValues.put(Col_3,CellNo);
+        contentValues.put(Col_5,StoreNo);
         contentValues.put(Col_6,Amount);
-        db.update(TABLE_NAME,contentValues,"ID=?",new String[] {ID});
+        db.update(TABLE_NAME,contentValues,"AccountCode=?",new String[] {AccountCode});
         return true;
     }
 
-    public Integer deleteData(String Code){
+    public boolean Register(String Username, String FirstName, String Password)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME,"ID=?",new String[] {ID});
+        ContentValues Values = new ContentValues();
+        Values.put(ColumnUsername,Username);
+        Values.put(ColumnFirstName,FirstName);
+        Values.put(ColumnPassword, Password);
+
+        db.insert(TABLE_NAME1, null, Values);
+        db.close();
+        return false;
+    }
+
+    public Boolean checkUsernamePassword(String Username, String Password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from users where username = ? and password = ?", new String[]{Username, Password});
+        if (cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public Integer deleteData(String AccountCode){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME,"AccountCode=?",new String[] {AccountCode});
 
     }
 

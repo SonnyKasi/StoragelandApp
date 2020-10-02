@@ -20,16 +20,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_Delete"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="520dp"
-        android:background="@android:drawable/button_onoff_indicator_off"
-        android:text="Delete"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scrollView4" />
-
-    <Button
         android:id="@+id/button_SaveClient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,6 +36,16 @@
         android:text="Update"
         app:layout_constraintBottom_toTopOf="@+id/button_Delete"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_Delete"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="520dp"
+        android:background="@android:drawable/button_onoff_indicator_off"
+        android:text="Delete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView4" />
 
     <ScrollView
         android:id="@+id/scrollView4"

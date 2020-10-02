@@ -41,22 +41,24 @@ public class AddClient extends AppCompatActivity {
 
     public void AddData()
     {
-        button_add.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        boolean InfoSaved = dbHelper.insertData(editName.getText().toString(),cellNr.getText().toString(),
-                                occuDate.getText().toString(), storeNo.getText().toString(),
-                                amount.getText().toString(), editAddress.getText().toString(), editEmail.getText().toString());
-                        if (InfoSaved == true) {
-                            Toast.makeText(AddClient.this, "Client has been saved", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(AddClient.this, "Client not been saved", Toast.LENGTH_SHORT).show();
-                        }
+       button_add.setOnClickListener(
+               new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                    boolean isInserted = dbHelper.insertData(editName.getText().toString(),cellNr.getText().toString(),occuDate.getText().toString(),
+                            storeNo.getText().toString(),amount.getText().toString(),editAddress.getText().toString(),editEmail.getText().toString());
+                    if (isInserted == true){
+
+                        Toast.makeText(AddClient.this,"Information inserted",Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(AddClient.this,"Information not inserted",Toast.LENGTH_SHORT).show();
                     }
-                }
-        );
+                   }
+               }
+       );
     }
+
+
 
     public void UpdateData ()
     {
@@ -76,6 +78,7 @@ public class AddClient extends AppCompatActivity {
             );
         }
 
+
     public void DeleteData ()
     {
             button_delete.setOnClickListener(
@@ -94,13 +97,6 @@ public class AddClient extends AppCompatActivity {
 
         }
 
-    public void showMessage(String title,String Message){
-        AlertDialog.Builder builder= new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
-    }
 }
 
 
